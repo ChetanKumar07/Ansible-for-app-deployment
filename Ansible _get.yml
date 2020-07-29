@@ -1,0 +1,25 @@
+--- 
+- 
+  become: true
+  hosts: localhost
+  tasks: 
+    - 
+      name: "create S3"
+      s3_bucket: 
+        name: mys3bucketchetan
+        state: present
+    - 
+      aws_s3: 
+        bucket: mys3bucketchetan
+        mode: put
+        object: /JenkinsWar.war
+        src: /root/JenkinsWar.war
+      name: "Simple PUT operation"
+    - 
+      aws_s3: 
+        bucket: mys3bucketchetan
+        dest: /root/new/JenkinsWar.war
+        mode: get
+        object: /JenkinsWar.war
+      name: "Simple GET operation"
+
