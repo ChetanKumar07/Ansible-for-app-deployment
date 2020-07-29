@@ -4,12 +4,11 @@
   hosts: webservers
   tasks: 
     - 
-      vars:
-      ansible_python_interpreter: /usr/bin/python3
       aws_s3: 
         bucket: mys3bucketchetan
         dest: /root/opt/Tomcat/apache-tomcat-9/webapps/JenkinsWar.war
         mode: get
         object: /JenkinsWar.war
       name: "Upload Jenkins to Tomcat server"
-
+      vars: 
+        ansible_python_interpreter: /usr/bin/python3
