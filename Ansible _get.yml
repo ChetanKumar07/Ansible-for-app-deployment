@@ -1,25 +1,13 @@
 --- 
 - 
   become: true
-  hosts: localhost
+  hosts: webservers
   tasks: 
     - 
-      name: "create S3"
-      s3_bucket: 
-        name: mys3bucketchetan
-        state: present
-    - 
       aws_s3: 
         bucket: mys3bucketchetan
-        mode: put
-        object: /JenkinsWar.war
-        src: /root/JenkinsWar.war
-      name: "Simple PUT operation"
-    - 
-      aws_s3: 
-        bucket: mys3bucketchetan
-        dest: /root/new/JenkinsWar.war
+        dest: /root/opt/Tomcat/apache-tomcat-9/webapps/JenkinsWar.war
         mode: get
         object: /JenkinsWar.war
-      name: "Simple GET operation"
+      name: "Upload Jenkins to Tomcat server"
 
