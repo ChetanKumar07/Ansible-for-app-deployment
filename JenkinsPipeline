@@ -1,0 +1,15 @@
+pipeline{
+    agent any
+    stages{
+        stage('SCM checkout'){
+            steps{
+                git 'https://github.com/ChetanKumar07/Ansible-for-app-deployment'
+            }
+        }
+        stage('Execute Ansible Playbook'){
+            steps{
+                ansiblePlaybook credentialsId: 'Ansible_Private_Key', disableHostKeyChecking: true, installation: 'Ansible_Test', inventory: 'dev.inv', playbook: 'Ansible _get.yml'
+            }
+        }
+    }
+}
